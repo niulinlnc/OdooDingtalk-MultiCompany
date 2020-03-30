@@ -45,6 +45,22 @@ class HrEmployee(models.Model):
             else:
                 res.ding_avatar = False
 
+    @api.constrains('user_id')
+    def _constrains_dingtalk_user_id(self):
+        """
+        当修改关联用户时，将员工的钉钉ID写入到系统用户中
+        :return:
+        """
+        if self.user_id and self.ding_id:
+            # 把员工的钉钉id和手机号写入到系统用户oauth
+            users = self.env['res.users'].sudo().search([('ding_user_id', '=', self.ding_id), ('company_id', '=', self.company_id.id)])
+            if users:
+                users.sudo().write({'ding_user_id': False, 'ding_user_phone': False})
+            self.user_id.sudo().write({
+                'ding_user_id': self.ding_id,
+                'ding_user_phone': self.mobile_phone,
+            })
+
     def create_ding_employee(self):
         """
         上传员工到钉钉

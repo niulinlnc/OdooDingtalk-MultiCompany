@@ -7,7 +7,7 @@
     'website': "https://www.sxfblog.com",
     'category': 'dingtalk',
     'version': '12.1.0',
-    'depends': ['base', 'hr', 'mail'],
+    'depends': ['base', 'hr', 'mail', 'auth_oauth'],
     'installable': True,
     'application': True,
     'auto_install': False,
@@ -16,6 +16,7 @@
         'security/ir.model.access.csv',
         'security/ir_rule.xml',
         'data/default_callback_list.xml',
+        # 'data/auth_oauth_data.xml',
         'views/assets.xml',
         'wizard/synchronous.xml',
         'wizard/callback_get.xml',
@@ -25,5 +26,6 @@
         'views/hr_employee.xml',
         'views/res_partner.xml',
         'views/callback_manage.xml',
+        'views/res_users.xml',
     ],
 }

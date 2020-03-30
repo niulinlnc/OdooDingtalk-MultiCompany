@@ -6,3 +6,4 @@ from . import hr_department
 from . import res_partner
 from . import callback_list
 from . import callback_manage
+from . import res_users
